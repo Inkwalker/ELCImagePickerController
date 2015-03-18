@@ -256,6 +256,7 @@
         cell = [[ELCAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    [cell setOverlayImage:self.overlayImage];
     [cell setAssets:[self assetsForIndexPath:indexPath]];
     
     return cell;

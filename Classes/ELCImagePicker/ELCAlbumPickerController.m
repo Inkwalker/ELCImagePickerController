@@ -205,6 +205,7 @@
     [picker.assetGroup setAssetsFilter:[self assetFilter]];
     
 	picker.assetPickerFilterDelegate = self.assetPickerFilterDelegate;
+    picker.overlayImage = self.overlayImage;
 	
 	[self.navigationController pushViewController:picker animated:YES];
 }

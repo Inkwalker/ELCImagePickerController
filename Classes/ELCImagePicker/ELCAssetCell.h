@@ -11,6 +11,7 @@
 @interface ELCAssetCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL alignmentLeft;
+@property (nonatomic, strong) UIImage *overlayImage;
 
 - (void)setAssets:(NSArray *)assets;
 

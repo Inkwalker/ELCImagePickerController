@@ -23,7 +23,10 @@
 
 - (IBAction)launchController
 {
-	ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initImagePicker];
+    ELCAlbumPickerController *albumPicker = [[ELCAlbumPickerController alloc] initWithStyle:UITableViewStylePlain];
+    albumPicker.overlayImage = [UIImage imageNamed:@"overlay-green"];
+    
+	ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initWithRootViewController:albumPicker];
 
     elcPicker.maximumImagesCount = 100; //Set the maximum number of images to select to 100
     elcPicker.returnsOriginalImage = YES; //Only return the fullScreenImage, not the fullResolutionImage
@@ -31,6 +34,8 @@
     elcPicker.onOrder = YES; //For multiple image selection, display and return order of selected images
     elcPicker.mediaTypes = @[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie]; //Supports image and movie types
 
+    albumPicker.parent = elcPicker;
+    
 	elcPicker.imagePickerDelegate = self;
     
     [self presentViewController:elcPicker animated:YES completion:nil];
@@ -64,6 +69,7 @@
 	ELCAssetTablePicker *tablePicker = [[ELCAssetTablePicker alloc] initWithStyle:UITableViewStylePlain];
     tablePicker.singleSelection = YES;
     tablePicker.immediateReturn = YES;
+    tablePicker.overlayImage = nil; //this will set default overlay
     
 	ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initWithRootViewController:tablePicker];
     elcPicker.maximumImagesCount = 1;

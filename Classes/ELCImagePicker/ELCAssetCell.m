@@ -49,8 +49,7 @@
     for (ELCOverlayImageView *view in _overlayViewArray) {
         [view removeFromSuperview];
 	}
-    //set up a pointer here so we don't keep calling [UIImage imageNamed:] if creating overlays
-    UIImage *overlayImage = nil;
+
     for (int i = 0; i < [_rowAssets count]; ++i) {
 
         ELCAsset *asset = [_rowAssets objectAtIndex:i];
@@ -68,10 +67,10 @@
             overlayView.hidden = asset.selected ? NO : YES;
             overlayView.labIndex.text = [NSString stringWithFormat:@"%d", asset.index + 1];
         } else {
-            if (overlayImage == nil) {
-                overlayImage = [UIImage imageNamed:@"Overlay.png"];
+            if (self.overlayImage == nil) {
+                self.overlayImage = [UIImage imageNamed:@"Overlay.png"];
             }
-            ELCOverlayImageView *overlayView = [[ELCOverlayImageView alloc] initWithImage:overlayImage];
+            ELCOverlayImageView *overlayView = [[ELCOverlayImageView alloc] initWithImage:self.overlayImage];
             [_overlayViewArray addObject:overlayView];
             overlayView.hidden = asset.selected ? NO : YES;
             overlayView.labIndex.text = [NSString stringWithFormat:@"%d", asset.index + 1];
